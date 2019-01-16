@@ -1,5 +1,7 @@
 package com.anselm.weather.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TemperatureReading {
+	
 	@JsonProperty("dt")
 	private Long timestamp;
 	
@@ -22,6 +25,13 @@ public class TemperatureReading {
 	
 	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
+	}
+	
+	public Date getDate() {
+		Timestamp timestamp = new Timestamp(this.getTimestamp() * 1000);
+		Date date = new Date(timestamp.getTime());
+		
+		return date;
 	}
 
 	public Double getTemperature() {
@@ -61,7 +71,7 @@ public class TemperatureReading {
                 "temp=" + this.getTemperature() +
                 ", minTemp='" + this.getMinTemperature() + '\'' +
                 ", maxTemp='" + this.getMaxTemperature() + '\'' +
-                ", timestamp='" + this.getTimestamp() + '\'' +
+                ", timestamp='" + this.getDate() + '\'' +
                 '}';
     }
 }
