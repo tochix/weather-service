@@ -41,7 +41,7 @@ public class Config {
 		return propVal;
 	}
 	
-	public String getWeatherApiUrlForCity(int cityId) throws IOException {
+	public String getWeatherApiUrlForCity(String cityId) throws IOException {
 		String baseUrl = this.getProperty("weather.api.base_url");
 		String forecastEndpoint = this.getProperty("weather.api.forecast.endpoint");
 		String apiAppId = this.getProperty("weather.api.app_id");
